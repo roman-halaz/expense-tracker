@@ -5,6 +5,7 @@
     padding: 0.5rem;
     margin: 1rem 0;
     background-color: #4b4b4b;
+    order: 1;
 }
 
 .expense-item__description {
@@ -14,16 +15,19 @@
     align-items: flex-end;
     flex-flow: column-reverse;
     justify-content: flex-start;
-    flex: 1;
+    /*flex: 2;*/
 }
 
 .expense-item h2 {
-    color: #3a3a3a;
+    display: inline;
     font-size: 1rem;
     flex: 1;
     margin: 0 1rem;
     color: white;
+    order: 3;
+    padding: 0;
 }
+
 
 .expense-item__price {
     font-size: 1rem;
@@ -33,6 +37,20 @@
     border: 1px solid white;
     padding: 0.5rem;
     border-radius: 12px;
+    order: 4;
+
+}
+
+.edit-icon-button {
+
+    position: relative;
+    color: black;
+    top: 4px;
+    left: 10px;
+
+    /*padding: 0;*/
+    /*border: 0;*/
+
 }
 
 .expense-item__delete__container {
@@ -49,7 +67,7 @@
 }
 
 .expense-item__delete__click {
-    font-size: 30px;
+    font-size: 35px;
     background-color: #4b4b4b;
     margin: 0;
     border: 0;
@@ -66,6 +84,9 @@
 }
 
 
+.edit-icon-button:hover {
+    color: white;
+}
 @media (min-width: 580px) {
     .expense-item__description {
         flex-direction: row;
