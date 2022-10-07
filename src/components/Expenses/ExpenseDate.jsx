@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import './ExpenseDate.css';
 
 const ExpenseDate = (props) => {
   const { date } = props;
-
-  const month = new Date(date).toLocaleString('en-US', { month: 'long' });
-  const day = new Date(date).toLocaleString('en-US', { day: '2-digit' });
-  const year = new Date(date).getFullYear();
-
+  const processedDate = new Date(date);
+  // const dateStorage = {
+  //   month: dateData.toLocaleString('en-US', { month: 'long' }),
+  //   day: dateData.toLocaleString('en-US', { day: '2-digit' }),
+  //   year: dateData.getFullYear(),
+  // };
+  const { day, month, year } = useMemo(() => ({
+    day: processedDate.toLocaleString('en-US', { day: '2-digit' }),
+    month: processedDate.toLocaleString('en-US', { month: 'long' }),
+    year: processedDate.getFullYear(),
+  }), [processedDate]);
   return (
     <div className="expense-date">
       <div className="expense-date__month">{month}</div>
