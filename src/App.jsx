@@ -13,7 +13,7 @@ import Users from './users';
 // import NewExpense from './components/NewExpense/NewExpense';
 import Expenses from './components/Expenses/Expenses';
 import ExpenseForm from './components/NewExpense/ExpenseForm';
-import ChangeTitleModal from './branches/ChangeTitleModal';
+import ChangeTitleModal from './components/ChangeTitleModal';
 import './App.css';
 
 const DUMMY_EXPENSES = [
