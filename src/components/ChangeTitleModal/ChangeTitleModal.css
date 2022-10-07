@@ -1,0 +1,53 @@
+::backdrop {
+    --color-backdrop: red;
+}
+
+dialog::backdrop {
+    background: var(--color-backdrop);
+}
+
+
+.modal__content {
+    box-shadow: black;
+    margin: 500px auto;
+    padding: 10px 10px 3px ;
+    border: none;
+    border-radius: 10px;
+    font-family: "Roboto", sans-serif;
+}
+
+.modal__input {
+    padding: 3px;
+    border-radius: 5px;
+    border-color: black;
+    border-width: 1px;
+    font-family: "Roboto", sans-serif;
+
+}
+.modal__container_button {
+    display: flex;
+    justify-content: center;
+}
+.modal__cancel_button {
+    padding: 5px 10px;
+    border: none;
+    margin: 10px;
+    border-radius: 7px;
+    background: #cccccc;
+    font-family: inherit;
+}
+.modal__cancel_button:hover  {
+    color: firebrick;
+}
+.modal__change_button:hover {
+    color: white;
+}
+
+.modal__change_button {
+    padding: 5px 10px;
+    border: none;
+    margin: 10px;
+    border-radius: 7px;
+    background: cornflowerblue;
+    font-family: inherit;
+}

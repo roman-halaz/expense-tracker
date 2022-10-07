@@ -1,87 +1,82 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import './ExpenseForm.css';
 import DefaultExpenseForm from './DefaultExpenseForm';
 
 const ExpenseForm = (props) => {
   const { onSaveExpenseData } = props;
-  const [enteredTitle, setEnteredTitle] = useState('');
-  const [enteredAmount, setEnteredAmount] = useState('');
-  const [enteredDate, setEnteredDate] = useState('');
-  const [clickedDefaultForm, setClickedDefaultForm] = useState(false);
+  const [title, setTitle] = useState('');
+  const [amount, setAmount] = useState('');
+  const [date, setDate] = useState('');
+  const [isShown, setIsShown] = useState(false);
+  const maxDay = new Date().toISOString().split('T')[0];
 
-  const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
   };
 
-  const amountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value);
+  const handleAmountChange = (event) => {
+    setAmount(event.target.value);
   };
 
-  const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
+  const handleDateChange = (event) => {
+    setDate(event.target.value);
   };
 
-  const submitHandler = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-
     const expenseData = {
-      title: enteredTitle,
-      amount: +enteredAmount,
-      date: new Date(enteredDate),
+      title,
+      amount: Number(amount),
+      date: new Date(date),
     };
+    let isTitleValid;
 
-    let emptyTitleCondition = false;
+    // for (let i = 0; i < expenseData.title.length; i++) {
+    //   if (expenseData.title[i] === ' ') {
+    //     isTitleValid = true;
+    //   } else {
+    //     break;
+    //   }
+    // }
 
-    for (let i = 0; i < expenseData.title.length; i++) {
-      if (expenseData.title[i] === ' ') {
-        emptyTitleCondition = true;
-      } else {
-        emptyTitleCondition = false;
-        break;
-      }
-    }
-
-    if (emptyTitleCondition) {
+    if (isTitleValid) {
       alert("Please don't write empty title.");
-      setEnteredTitle('');
-      setEnteredAmount('');
-      setEnteredDate('');
     } else {
       onSaveExpenseData(expenseData);
-      setEnteredTitle('');
-      setEnteredAmount('');
-      setEnteredDate('');
-      setClickedDefaultForm(false);
+      setTitle('');
+      setAmount('');
+      setDate('');
+      setIsShown(false);
     }
   };
 
-  const onClickedForm = () => {
-    setClickedDefaultForm(true);
+  const showForm = () => {
+    setIsShown(true);
   };
 
-  const cancelButtonHandler = () => {
-    setClickedDefaultForm(false);
+  const hideForm = () => {
+    setIsShown(false);
   };
 
-  if (!clickedDefaultForm) {
+  if (!isShown) {
     return (
       <div>
-        <DefaultExpenseForm clicked={onClickedForm} />
+        <DefaultExpenseForm onShow={showForm} />
       </div>
     );
   }
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={handleSubmit}>
         <div className="new-expense__controls">
           <div className="new-expense__control">
             <label htmlFor="Title">
               <input
                 id="title"
                 type="text"
-                value={enteredTitle}
-                onChange={titleChangeHandler}
+                value={title}
+                onChange={handleTitleChange}
                 minLength="1"
                 maxLength="20"
                 required
@@ -97,8 +92,8 @@ const ExpenseForm = (props) => {
                 min="0.01"
                 max="9999999999"
                 step="0.01"
-                value={enteredAmount}
-                onChange={amountChangeHandler}
+                value={amount}
+                onChange={handleAmountChange}
                 required
               />
               Amount
@@ -110,9 +105,9 @@ const ExpenseForm = (props) => {
                 id="Date"
                 type="date"
                 min="2018-01-01"
-                max="2022-12-31"
-                value={enteredDate}
-                onChange={dateChangeHandler}
+                max={maxDay}
+                value={date}
+                onChange={handleDateChange}
                 required
               />
               Date
@@ -120,7 +115,7 @@ const ExpenseForm = (props) => {
           </div>
         </div>
         <div className="new-expense__actions">
-          <button type="button" onClick={cancelButtonHandler}>Cancel</button>
+          <button type="button" onClick={hideForm}>Cancel</button>
           <button type="submit">Add Expense</button>
         </div>
       </form>
@@ -128,4 +123,4 @@ const ExpenseForm = (props) => {
   );
 };
 
-export default ExpenseForm;
+export default memo(ExpenseForm);

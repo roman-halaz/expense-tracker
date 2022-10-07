@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './ChartBar.css';
 
 const ChartBar = (props) => {
@@ -18,4 +18,4 @@ const ChartBar = (props) => {
   );
 };
 
-export default ChartBar;
+export default memo(ChartBar);
