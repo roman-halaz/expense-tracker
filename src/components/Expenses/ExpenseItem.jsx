@@ -6,13 +6,13 @@ import './ExpenseItem.css';
 
 const ExpenseItem = (props) => {
   const {
-    onDelete, date, title, amount, id, onTitleModal,
+    onDelete, date, title, amount, id, onChangeTitleModalOpen,
   } = props;
   const handleDelete = () => {
     onDelete(id);
   };
   const handleTitleModal = () => {
-    onTitleModal(title, id);
+    onChangeTitleModalOpen(title, id);
   };
   console.log('render');
   return (
