@@ -4,12 +4,11 @@ import ExpenseItem from './ExpenseItem';
 
 const ExpensesList = (props) => {
   const {
-    onDelete, items, onTitleModal,
+    onDelete, items, onChangeTitleModalOpen,
   } = props;
-  if (items.length === 0) {
+  if (!items.length) {
     return <p className="expenses-list__fallback">Found no expenses.</p>;
   }
-  console.log(items);
   return (
     <ul className="expenses-list">
       {(items.map((expense) => (
@@ -20,7 +19,7 @@ const ExpensesList = (props) => {
           amount={expense.amount}
           date={expense.date}
           onDelete={onDelete}
-          onTitleModal={onTitleModal}
+          onChangeTitleModalOpen={onChangeTitleModalOpen}
         />
       )))}
     </ul>

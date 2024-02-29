@@ -2,12 +2,10 @@ import React from 'react';
 import './DefaultExpenseForm.css';
 
 const DefaultExpenseForm = (props) => {
-  const { clicked } = props;
-  const DefaultExpenseFormHandler = () => {
-    clicked();
-  };
+  const { onShow } = props;
+
   return (
-    <button className="new-expense__button" type="button" onClick={DefaultExpenseFormHandler}>Add New Expense</button>
+    <button className="new-expense__button" type="button" onClick={() => onShow()}>Add New Expense</button>
 
   );
 };
